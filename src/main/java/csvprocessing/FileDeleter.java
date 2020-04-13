@@ -6,11 +6,12 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 
-public class FileDeletion {
+public class FileDeleter {
 
-    public void deleteFile(String directory, String fileName) {
-        String fileToDelete = directory + "\\" + fileName;
-        // System.out.println(fileToDelete);
+    public static void deleteFile(String directoryPath, String RESULT_FILE) {
+        String fileToDelete = String.valueOf(Paths.get(directoryPath + RESULT_FILE));
+        //String fileToDelete = directory + "\\" + fileName;
+        System.out.println("File to delete " + fileToDelete);
         try {
             Files.deleteIfExists(Paths.get(fileToDelete));
         } catch (NoSuchFileException e) {
@@ -20,7 +21,6 @@ public class FileDeletion {
         } catch (IOException e) {
             System.out.println("Invalid permissions.");
         }
-
         System.out.println("Deletion successful.");
     }
 }

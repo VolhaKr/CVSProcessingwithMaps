@@ -5,14 +5,18 @@ import com.opencsv.CSVWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
+
+import static csvprocessing.CSVFileApplication.INPUT_FILE;
+import static csvprocessing.CSVFileApplication.RESULT_FILE;
 
 public class CSVFileWriter {
 
-    public void writeFile(List<List<String>> listofCompanyCountry, String directory) {
-        String fileToCreate = directory + "\\result.csv";
+    public static void writeFile(List<List<String>> listofCompanyCountry, String directoryPath) {
+        String fileToCreate = String.valueOf(Paths.get(directoryPath + RESULT_FILE));
+       // String fileToCreate = directory + "\\result.csv";
         //System.out.println(fileToCreate);
-
         // first create file object for file placed at location
         // specified by filepath
         File file = new File(fileToCreate);

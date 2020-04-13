@@ -1,34 +1,38 @@
 package csvprocessing;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 public class CSVFileApplication {
+    static final String INPUT_FILE = "data.csv";
+    static final String RESULT_FILE = "result.csv";
+
+    //private static final String directoryPath = "D:\\Java\\JavaTraining\\";
     public static void main(String[] args) {
-        final String INPUT_FILE = "data.csv";
-        final String RESULT_FILE = "result.csv";
-        final String directoryPath = "D:\\Java\\JavaTraining";
-        List<List<String>> listofCompanyCountry;
+        //Path to the directory with input and output files is specified in app arguments.
+        final String directoryPath = args[0];
 
+        List<List<String>> listOfCompanyCountry;
         CSVFileProcessor csvFileProcessor = new CSVFileProcessor();
-        listofCompanyCountry = csvFileProcessor.readDataLineByLine(directoryPath, INPUT_FILE);
+        //   System.out.println(String.valueOf(inputFilePath));
+        listOfCompanyCountry = csvFileProcessor.readDataLineByLine(directoryPath, INPUT_FILE);
         // System.out.println("And now array");
-        // System.out.println(listofCompanyCountry);
-
-        Collections.sort(listofCompanyCountry, new Comparator<List<String>>() {
-            @Override
-            public int compare(List<String> o1, List<String> o2) {
-                return (o1.get(0)).compareTo(o2.get(0));
-            }
-        });
+        // System.out.println(listOfCompanyCountry);
+        Collections.sort(listOfCompanyCountry, ((o1, o2) -> (o1.get(0)).compareTo(o2.get(0))));
+        //        Collections.sort(listOfCompanyCountry, new Comparator<List<String>>() {
+//            @Override
+//            public int compare(List<String> o1, List<String> o2) {
+//                return (o1.get(0)).compareTo(o2.get(0));
+//            }
+//        });
         //System.out.println("And now sorted array");
-        //System.out.println(listofCompanyCountry);
+        //System.out.println(listOfCompanyCountry);
 
-        FileDeletion outputFileDeletion = new FileDeletion();
-        outputFileDeletion.deleteFile(directoryPath, RESULT_FILE);
+        FileDeleter.deleteFile(directoryPath, RESULT_FILE);
 
-        CSVFileWriter csvFileWriter = new CSVFileWriter();
-        csvFileWriter.writeFile(listofCompanyCountry, directoryPath);
+        CSVFileWriter.writeFile(listOfCompanyCountry, directoryPath);
     }
 }
