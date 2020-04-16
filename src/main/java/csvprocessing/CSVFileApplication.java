@@ -31,6 +31,6 @@ public class CSVFileApplication {
 
         FileDeleter.deleteFile(dataFilesdirectoryPath, RESULT_FILE);
 
-        // CSVFileWriter.writeFile(listOfCompanyCountry, dataFilesdirectoryPath);
+         CSVFileWriter.writeFile(dataFilesdirectoryPath);
     }
 }

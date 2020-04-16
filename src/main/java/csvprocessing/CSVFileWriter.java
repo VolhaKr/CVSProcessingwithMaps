@@ -19,9 +19,10 @@ public class CSVFileWriter {
     public static void writeFile(String directoryPath) {
         String fileToCreate = String.valueOf(Paths.get(directoryPath + RESULT_FILE));
         File file = new File(fileToCreate);
+        FileWriter outputfile = null;
         try {
             //create FileWriter object with file as parameter
-            FileWriter outputfile = new FileWriter(file);
+            outputfile = new FileWriter(file);
             // create CSVWriter object filewriter object as parameter
 
         } catch (IOException e) {
@@ -48,7 +49,10 @@ public class CSVFileWriter {
 //
             }
         }
-        writer.close();
+        try {
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     }
-}

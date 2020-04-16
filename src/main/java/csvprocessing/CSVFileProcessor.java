@@ -12,16 +12,16 @@ import java.util.*;
 public class CSVFileProcessor {
     private static final int COMPANY_COLUMN = 0;
     private static final int COUNTRY_COLUMN = 8;
-    // static TreeMap<Country, TreeSet<String>> countryCompanies = new TreeMap<>();
-    static TreeMap<Country, TreeSet<String>> countryCompanies = new TreeMap<>(new Comparator<Country>() {
-        @Override
-        public int compare(Country country, Country t1) {
-            if (country.equals(Country.NONE)) {
-                //What to return here???
-                return country.compareTo(t1);
-            } else return country.compareTo(t1);
-        }
-    });
+    static TreeMap<Country, TreeSet<String>> countryCompanies = new TreeMap<>();
+//    static TreeMap<Country, TreeSet<String>> countryCompanies = new TreeMap<>(new Comparator<Country>() {
+//        @Override
+//        public int compare(Country country, Country t1) {
+//            if (country.equals(Country.NONE)) {
+//                //What to return here???
+//                return country.compareTo(t1);
+//            } else return country.compareTo(t1);
+//        }
+//    });
 //        @Override
 //        public boolean equals(Object o) {
 //            return false;
