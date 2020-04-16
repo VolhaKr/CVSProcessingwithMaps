@@ -17,7 +17,7 @@ import static csvprocessing.CSVFileProcessor.countryCompanies;
 public class CSVFileWriter {
 
     public static void writeFile(String directoryPath) {
-                String fileToCreate = String.valueOf(Paths.get(directoryPath + RESULT_FILE));
+        String fileToCreate = String.valueOf(Paths.get(directoryPath + RESULT_FILE));
         File file = new File(fileToCreate);
         try {
             //create FileWriter object with file as parameter
@@ -28,6 +28,13 @@ public class CSVFileWriter {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        for (Map.Entry<Country, TreeSet<String>>
+                entry : countryCompanies.entrySet()) {
+            Country country = entry.getKey();
+            System.out.println(country + "" + entry.getValue());
+        }
+
         CSVWriter writer = new CSVWriter(outputfile);
         for (Map.Entry<Country, TreeSet<String>>
                 entry : countryCompanies.entrySet()) {
@@ -42,5 +49,6 @@ public class CSVFileWriter {
             }
         }
         writer.close();
+    }
     }
 }

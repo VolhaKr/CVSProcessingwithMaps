@@ -14,13 +14,12 @@ public class CSVFileApplication {
         final String dataFilesdirectoryPath = args[0];
 
 
-
         CSVFileProcessor csvFileProcessor = new CSVFileProcessor();
         //   System.out.println(String.valueOf(inputFilePath));
         csvFileProcessor.readDataLineByLine(dataFilesdirectoryPath, INPUT_FILE);
         // System.out.println("And now array");
         // System.out.println(listOfCompanyCountry);
-       // Collections.sort(listOfCompanyCountry, ((o1, o2) -> (o1.get(0)).compareTo(o2.get(0))));
+        // Collections.sort(listOfCompanyCountry, ((o1, o2) -> (o1.get(0)).compareTo(o2.get(0))));
         //        Collections.sort(listOfCompanyCountry, new Comparator<List<String>>() {
 //            @Override
 //            public int compare(List<String> o1, List<String> o2) {
@@ -32,6 +31,6 @@ public class CSVFileApplication {
 
         FileDeleter.deleteFile(dataFilesdirectoryPath, RESULT_FILE);
 
-       // CSVFileWriter.writeFile(listOfCompanyCountry, dataFilesdirectoryPath);
+        // CSVFileWriter.writeFile(listOfCompanyCountry, dataFilesdirectoryPath);
     }
 }
