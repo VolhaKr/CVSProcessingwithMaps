@@ -1,9 +1,5 @@
 package csvprocessing;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
-
 public class CSVFileApplication {
     static final String INPUT_FILE = "data.csv";
     static final String RESULT_FILE = "result.csv";

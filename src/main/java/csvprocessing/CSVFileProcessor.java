@@ -52,9 +52,9 @@ public class CSVFileProcessor {
 
     private String convertToUpperCaseNoSpaces(String country) {
         String tempConvertedString = country.replaceAll("\\s+", "_");
-        String convertedString = tempConvertedString.trim().toUpperCase();
-        return convertedString;
+        return tempConvertedString.trim().toUpperCase();
     }
+
 
     private void putToCountryCompanies(String country, String company) {
         String countryToAdd = convertToUpperCaseNoSpaces(country);
@@ -63,23 +63,29 @@ public class CSVFileProcessor {
                 countryToAdd = "NONE";
             }
             Country countryToAddEnum = Country.valueOf(countryToAdd);
-            TreeSet<String> tempCompanies;
+            TreeSet<String> companiesForCurrentCountry;
             if (countryCompanies.containsKey(countryToAddEnum)) {
-                tempCompanies = countryCompanies.get(countryToAddEnum);
+                companiesForCurrentCountry = countryCompanies.get(countryToAddEnum);
             } else {
-                tempCompanies = new TreeSet<String>();
+                companiesForCurrentCountry = new TreeSet<String>();
             }
             //  System.out.println("country" + countryToAdd + "string country " + countryToAddString);
             System.out.println("company" + company);
-            tempCompanies.add(company);
-            System.out.println("set" + tempCompanies);
-            countryCompanies.put(countryToAddEnum, tempCompanies);
+            companiesForCurrentCountry.add(company);
+            System.out.println("set" + companiesForCurrentCountry);
+            countryCompanies.put(countryToAddEnum, companiesForCurrentCountry);
         }
 //????Doesn't work
-        catch (IllegalArgumentException e) {
+//        catch (IllegalArgumentException e) {
+//            e.printStackTrace();
+//            System.out.println("Countries in CSV are not in the allowed enum");
+//        }
+
+        catch (Exception e) {
             e.printStackTrace();
             System.out.println("Countries in CSV are not in the allowed enum");
         }
+
     }
 }
 
