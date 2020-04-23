@@ -36,6 +36,8 @@ public class CSVFileProcessor {
 
         try {
             CSVReader csvReader = new CSVReaderBuilder(new FileReader(inputFilePath)).withSkipLines(1).build();
+
+
             String[] nextRecord = new String[0];
 
             // we are going to read data line by line
@@ -58,11 +60,19 @@ public class CSVFileProcessor {
 
     private void putToCountryCompanies(String country, String company) {
         String countryToAdd = convertToUpperCaseNoSpaces(country);
+        Country countryToAddEnum = Country.NONE;
+
+//        if ((countryToAdd.equals("")) || (countryToAdd.isEmpty())) {
+//            countryToAdd = "NONE";
+//        }
         try {
-            if ((countryToAdd.equals("")) || (countryToAdd.isEmpty())) {
-                countryToAdd = "NONE";
-            }
-            Country countryToAddEnum = Country.valueOf(countryToAdd);
+            countryToAddEnum = Country.valueOf(countryToAdd);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Country" + countryToAdd + "could not be found, defaulting to NONE ");
+            System.out.println("Countries in CSV are not in the allowed enum, Illegal Argument caught");
+        }
+        try {
             TreeSet<String> companiesForCurrentCountry;
             if (countryCompanies.containsKey(countryToAddEnum)) {
                 companiesForCurrentCountry = countryCompanies.get(countryToAddEnum);
@@ -74,19 +84,23 @@ public class CSVFileProcessor {
             companiesForCurrentCountry.add(company);
             System.out.println("set" + companiesForCurrentCountry);
             countryCompanies.put(countryToAddEnum, companiesForCurrentCountry);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Countries in CSV are not in the allowed enum");
         }
 //????Doesn't work
 //        catch (IllegalArgumentException e) {
 //            e.printStackTrace();
 //            System.out.println("Countries in CSV are not in the allowed enum");
 //        }
-
-        catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Countries in CSV are not in the allowed enum");
-        }
+//
+//        catch (Exception e) {
+//            e.printStackTrace();
+//            System.out.println("Countries in CSV are not in the allowed enum");
+//        }
 
     }
 }
+
 
 
